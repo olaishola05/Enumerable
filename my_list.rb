@@ -1,25 +1,28 @@
-require_relative './my_enumerable.rb'
+require_relative './my_enumerable'
 
 class MyList
-
   include MyEnumerable
-  
+
   def initialize(*list)
     @list = list
   end
 
-  def each
-    @list.each { |x| yield x }
+  def each(&block)
+    @list.each(&block)
   end
-
 end
 
 list = MyList.new(1, 2, 3, 4)
 
-puts list.all? { |e| e < 5}
-puts list.all? { |e| e > 5}
+print(list.all? { |e| e < 5 })
+puts "\n"
+print(list.all? { |e| e > 5 })
 
-puts list.any? {|e| e == 2}
-puts list.any? {|e| e == 5}
+puts "\n"
+print(list.any? { |e| e == 2 })
+puts "\n"
+print(list.any? { |e| e == 5 })
 
-puts list.filter { |e| e.even? }
+puts "\n"
+print(list.filter(&:even?))
+puts "\n"
